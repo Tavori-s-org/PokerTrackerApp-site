@@ -3,22 +3,341 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PokerTracker</title>
+
+  <!-- Primary SEO -->
+  <title>PokerTrack Pro — Poker Session &amp; Bankroll Tracker for iPhone &amp; Apple Watch</title>
+  <meta name="description" content="PokerTrack Pro is a native iPhone and Apple Watch app for tracking live poker sessions, bankroll, and tournament results. Live timer, rebuys, expenses, hourly rate, win rate, charts, and iCloud sync. No ads. Free to start." />
+  <meta name="keywords" content="poker tracker, poker session tracker, poker bankroll tracker, poker app iphone, apple watch poker, poker results tracker, tournament tracker, poker hourly rate, poker win rate" />
+  <link rel="canonical" href="https://tavori-s-org.github.io/PokerTrackerApp-site/" />
+  <meta name="theme-color" content="#1d1d1f" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="PokerTrack Pro — Poker Session &amp; Bankroll Tracker for iPhone" />
+  <meta property="og:description" content="Track every live poker session from your iPhone or Apple Watch. Live timer, rebuys, bankroll, tournament stats, and charts. No ads, free to start." />
+  <meta property="og:url" content="https://tavori-s-org.github.io/PokerTrackerApp-site/" />
+  <meta property="og:image" content="https://tavori-s-org.github.io/PokerTrackerApp-site/screenshots/01-dashboard.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PokerTrack Pro — Poker Session &amp; Bankroll Tracker" />
+  <meta name="twitter:description" content="Native iPhone + Apple Watch poker tracker. Live timer, bankroll, tournaments, charts, iCloud sync. No ads." />
+  <meta name="twitter:image" content="https://tavori-s-org.github.io/PokerTrackerApp-site/screenshots/01-dashboard.png" />
+
+  <!-- Structured data: helps Google show a rich app result -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "PokerTrack Pro",
+    "operatingSystem": "iOS, watchOS",
+    "applicationCategory": "LifestyleApplication",
+    "description": "Native iPhone and Apple Watch app for tracking live poker sessions, bankroll, and tournament results.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "River Labs"
+    }
+  }
+  </script>
+
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; max-width: 600px; margin: 80px auto; padding: 0 24px; color: #1c1c1e; }
-    h1 { font-size: 2rem; font-weight: 700; }
-    p { color: #636366; line-height: 1.6; }
-    nav { margin-top: 32px; display: flex; gap: 24px; }
-    nav a { color: #007aff; text-decoration: none; font-weight: 500; }
-    nav a:hover { text-decoration: underline; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f5f5f7;
+      color: #1d1d1f;
+      line-height: 1.6;
+    }
+
+    a { color: #0071e3; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Hero */
+    header {
+      background: #1d1d1f;
+      color: #f5f5f7;
+      padding: 72px 24px 64px;
+      text-align: center;
+    }
+    header img.icon {
+      width: 88px; height: 88px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    header h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      max-width: 720px;
+      margin: 0 auto 16px;
+    }
+    header p.tagline {
+      font-size: 1.15rem;
+      color: #a1a1a6;
+      max-width: 600px;
+      margin: 0 auto 32px;
+    }
+    .cta {
+      display: inline-block;
+      background: #0071e3;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: 980px;
+      transition: background 0.2s;
+    }
+    .cta:hover { background: #0077ed; text-decoration: none; }
+    .cta-note { display: block; margin-top: 14px; font-size: 0.85rem; color: #6e6e73; }
+
+    main { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+
+    section.block { margin: 64px 0; }
+    section.block > h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: -0.3px;
+      margin-bottom: 12px;
+    }
+    section.block > p.sub {
+      text-align: center;
+      color: #6e6e73;
+      max-width: 620px;
+      margin: 0 auto 40px;
+    }
+
+    /* Feature grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; }
+    .card p { color: #3a3a3c; font-size: 0.95rem; }
+
+    /* Screenshots */
+    .shots {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 8px 4px 24px;
+      scroll-snap-type: x mandatory;
+    }
+    .shots img {
+      height: 460px;
+      border-radius: 24px;
+      flex: 0 0 auto;
+      scroll-snap-align: center;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    }
+
+    /* Pricing */
+    .price-wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .price {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px;
+    }
+    .price.pro { border: 2px solid #0071e3; }
+    .price h3 { font-size: 1.2rem; margin-bottom: 4px; }
+    .price .amount { font-size: 1.8rem; font-weight: 700; margin-bottom: 16px; }
+    .price ul { list-style: none; }
+    .price li { color: #3a3a3c; font-size: 0.95rem; padding: 6px 0 6px 26px; position: relative; }
+    .price li::before { content: "✓"; color: #34c759; position: absolute; left: 0; font-weight: 700; }
+
+    /* FAQ */
+    details {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 14px;
+    }
+    details summary {
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1rem;
+      list-style: none;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::after { content: "+"; float: right; color: #6e6e73; font-weight: 400; }
+    details[open] summary::after { content: "–"; }
+    details p { color: #3a3a3c; font-size: 0.95rem; margin-top: 12px; }
+
+    footer {
+      text-align: center;
+      padding: 48px 24px;
+      color: #6e6e73;
+      font-size: 0.85rem;
+    }
+    footer a { color: #6e6e73; }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.8rem; }
+      .shots img { height: 380px; }
+    }
   </style>
 </head>
 <body>
-  <h1>PokerTracker</h1>
-  <p>Log cash game sessions, track your bankroll, and analyse your stats across venues and stakes.</p>
-  <nav>
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="support.html">Support</a>
-  </nav>
+
+<header>
+  <img class="icon" src="icons/new%20icon.png" alt="PokerTrack Pro app icon" />
+  <h1>Track every poker session from your pocket — and your wrist.</h1>
+  <p class="tagline">PokerTrack Pro is a native iPhone and Apple Watch app for serious live players. Log sessions, watch your bankroll grow, and see the stats that actually matter. No ads. Free to start.</p>
+  <a class="cta" href="#" id="appstore-link">Download on the App Store</a>
+  <span class="cta-note">Free to start · No ads · iPhone &amp; Apple Watch</span>
+</header>
+
+<main>
+
+  <!-- Why -->
+  <section class="block">
+    <h2>The tracker built by a player, not a spreadsheet</h2>
+    <p class="sub">Most of us track sessions in a messy spreadsheet we forget to update, or a note at the cashier that never goes anywhere. PokerTrack Pro fixes that with a fast, native app that does the math for you.</p>
+  </section>
+
+  <!-- Screenshots -->
+  <section class="block">
+    <h2>See it in action</h2>
+    <p class="sub">Dashboard, history, charts, and bankroll — all native SwiftUI, light and dark mode.</p>
+    <div class="shots">
+      <img src="screenshots/01-dashboard.png" alt="PokerTrack Pro dashboard showing total profit, hourly rate and win rate" loading="lazy" />
+      <img src="screenshots/04-charts.png" alt="Cumulative profit chart in PokerTrack Pro" loading="lazy" />
+      <img src="screenshots/06-bankroll.png" alt="Bankroll tracker screen" loading="lazy" />
+      <img src="screenshots/02-history.png" alt="Session history list" loading="lazy" />
+      <img src="screenshots/07-new-session.png" alt="Starting a new live poker session" loading="lazy" />
+      <img src="screenshots/05-charts-venues.png" alt="Profit by venue chart" loading="lazy" />
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="block">
+    <h2>Everything a live grinder needs</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Live session timer</h3>
+        <p>Start a session, add rebuys, cash out. The timer keeps running even if you background or force-quit the app.</p>
+      </div>
+      <div class="card">
+        <h3>Apple Watch companion</h3>
+        <p>Glance at elapsed time, total invested, and current P/L from your wrist — and add rebuys without pulling out your phone.</p>
+      </div>
+      <div class="card">
+        <h3>Real stats that matter</h3>
+        <p>Hourly rate, win rate, streaks, downswings, and per-venue and per-stakes breakdowns with week/month/year filters.</p>
+      </div>
+      <div class="card">
+        <h3>Cash &amp; tournament modes</h3>
+        <p>Track cash games and MTTs side by side, with tournament ROI, ITM%, average and best finish.</p>
+      </div>
+      <div class="card">
+        <h3>Bankroll tracker</h3>
+        <p>An opt-in bankroll that auto-updates from your net session results, plus manual deposits and withdrawals.</p>
+      </div>
+      <div class="card">
+        <h3>Expenses &amp; notes</h3>
+        <p>Log food, tips, and transport per session for true net P/L, and add timestamped notes while you play.</p>
+      </div>
+      <div class="card">
+        <h3>Charts &amp; export</h3>
+        <p>Cumulative profit, per-session, by-venue and by-stakes charts. Export your history to CSV or Markdown.</p>
+      </div>
+      <div class="card">
+        <h3>Private iCloud sync</h3>
+        <p>Your sessions sync across your own devices via CloudKit. No accounts, no servers, your data stays yours.</p>
+      </div>
+      <div class="card">
+        <h3>Multi-currency</h3>
+        <p>Track in any of 10 currencies including USD, EUR, GBP, ILS, CAD, AUD, JPY, and more.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="block">
+    <h2>Free to start. Pro when you're ready.</h2>
+    <p class="sub">No ads, ever. The free tier is a fully usable tracker — upgrade only if you want the power features.</p>
+    <div class="price-wrap">
+      <div class="price">
+        <h3>Free</h3>
+        <div class="amount">$0</div>
+        <ul>
+          <li>Full live session tracking</li>
+          <li>Dashboard stats &amp; hourly rate</li>
+          <li>Cash &amp; tournament sessions</li>
+          <li>Last 15 sessions of history</li>
+          <li>No ads</li>
+        </ul>
+      </div>
+      <div class="price pro">
+        <h3>Pro</h3>
+        <div class="amount">$19.99<span style="font-size:0.9rem;font-weight:400;color:#6e6e73;">/year</span></div>
+        <ul>
+          <li>Everything in Free</li>
+          <li>Unlimited session history</li>
+          <li>Charts &amp; CSV / Markdown export</li>
+          <li>Bankroll tracker</li>
+          <li>Apple Watch companion</li>
+          <li>7-day free trial</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ (great for long-tail Google search) -->
+  <section class="block">
+    <h2>Frequently asked questions</h2>
+    <details>
+      <summary>Is PokerTrack Pro free?</summary>
+      <p>Yes. The free tier includes full live session tracking, dashboard stats, and both cash and tournament sessions, with your last 15 sessions of history and no ads. Pro ($19.99/year, with a 7-day free trial) unlocks unlimited history, charts, export, the bankroll tracker, and the Apple Watch app.</p>
+    </details>
+    <details>
+      <summary>Does it work on Apple Watch?</summary>
+      <p>Yes. The Apple Watch companion lets you see elapsed time, total invested, and current profit/loss during a live session, and add rebuys directly from your wrist.</p>
+    </details>
+    <details>
+      <summary>Can I track tournaments as well as cash games?</summary>
+      <p>Absolutely. PokerTrack Pro has a dedicated tournament mode with add-ons, entries, finishing position, and prize won, plus tournament-specific stats like ROI, ITM%, and average finish.</p>
+    </details>
+    <details>
+      <summary>Is my data private?</summary>
+      <p>Yes. There are no user accounts and no external servers. Your sessions are stored on your device and synced privately across your own devices through Apple's iCloud (CloudKit).</p>
+    </details>
+    <details>
+      <summary>Can I export my session history?</summary>
+      <p>Pro users can export their full history to CSV (numeric columns, ready for Excel or Google Sheets) or Markdown, and share it via the iOS share sheet.</p>
+    </details>
+    <details>
+      <summary>What devices and iOS version do I need?</summary>
+      <p>PokerTrack Pro is a native app for iPhone (iOS 17 or later) and Apple Watch (watchOS 10 or later).</p>
+    </details>
+  </section>
+
+</main>
+
+<footer>
+  &copy; 2026 River Labs. All rights reserved. &nbsp;·&nbsp;
+  <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+  <a href="support.html">Support</a> &nbsp;·&nbsp;
+  <a href="mailto:omertavo@gmail.com">Contact</a>
+</footer>
+
+<script>
+  var APP_STORE_URL = "https://apps.apple.com/us/app/pokertrackpro/id6763616866";
+  document.getElementById("appstore-link").setAttribute("href", APP_STORE_URL);
+</script>
+
 </body>
 </html>
