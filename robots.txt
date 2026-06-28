@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tavori-s-org.github.io/PokerTrackerApp-site/sitemap.xml
